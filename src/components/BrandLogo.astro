@@ -4,6 +4,7 @@ export interface Props {
 	shape?: 'circle' | 'rounded';
 	brand:
 		| 'buddy'
+		| 'cleavr'
 		| 'cloudflare'
 		| 'deno'
 		| 'edgio'
@@ -43,13 +44,15 @@ export interface Props {
 		| 'prismic'
 		| 'sanity'
 		| 'storyblok'
-		| 'wordpress';
+		| 'wordpress'
+		| 'kinsta';
 }
 
 const logos: Record<Props['brand'], { file: string; padding: string }> = {
 	alpinejs: { file: 'alpine-js.svg', padding: '.1875em' },
 	aws: { file: 'aws.svg', padding: '.1875em' },
 	buddy: { file: 'buddy.svg', padding: '.1625em' },
+	cleavr: { file: 'cleavr.svg', padding: '0.125em 0.125em 0.1375em' },
 	cloudflare: { file: 'cloudflare-pages.svg', padding: '.1875em' },
 	deno: { file: 'deno.svg', padding: '0' },
 	edgio: { file: 'edgio.svg', padding: '.1625em' },
@@ -88,6 +91,7 @@ const logos: Record<Props['brand'], { file: string; padding: string }> = {
 	sanity: { file: 'sanity.svg', padding: '0 .1em' },
 	storyblok: { file: 'storyblok.svg', padding: '.3em .25em .25em' },
 	wordpress: { file: 'wordpress.svg', padding: '.2em' },
+	kinsta: { file: 'kinsta.svg', padding: '0' },
 };
 
 const { brand, size = '4rem', shape = 'circle' } = Astro.props as Props;

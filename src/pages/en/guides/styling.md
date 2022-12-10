@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MainLayout.astro
-title: Styling & CSS
-description: Learn how to style components with Astro.
+title: Styles & CSS
+description: Learn how to style components in Astro with scoped styles, external CSS, and tooling like Sass and PostCSS.
 i18nReady: true
 setup: |
   import Since from '../../../components/Since.astro';
@@ -70,6 +70,26 @@ This is a great way to style things like blog posts, or documents with CMS-power
 
 Scoped styles should be used as often as possible. Global styles should be used only as-needed.
 
+### Combining classes with `class:list`
+
+If you need to combine classes on an element dynamically, you can use the `class:list` utility attribute in `.astro` files.
+
+```astro title="src/components/ClassList.astro" /class:list={.*}/
+---
+const { isRed } = Astro.props;
+---
+<!-- If `isRed` is truthy, class will be "box red". -->
+<!-- If `isRed` is falsy, class will be "box". -->
+<div class:list={['box', { red: isRed }]}><slot /></div>
+
+<style>
+  .box { border: 1px solid blue; }
+  .red { border-color: red; }
+</style>
+```
+
+📚 See our [directives reference](/en/reference/directives-reference/#classlist) page to learn more about `class:list`.
+
 ### CSS Variables
 
 <Since v="0.21.0" />
@@ -112,7 +132,7 @@ const { class: className } = Astro.props;
 ---
 import MyComponent from "../components/MyComponent.astro"
 ---
-<style is:global>
+<style>
   .red {
     color: red;
   }
@@ -120,6 +140,11 @@ import MyComponent from "../components/MyComponent.astro"
 <MyComponent class="red">This will be red!</MyComponent>
 ```
 
+This pattern lets you style child components directly. Astro will pass the parent’s scoped class name (e.g. `astro-HHNQFKH6`) through the `class` prop automatically, including the child in its parent’s scope.
+
+:::note[Scoped classes from parent components]
+Because the `class` prop includes the child in its parent’s scope, it is possible for styles to cascade from parent to child. To avoid this having unintended side effects, ensure you use unique class names in the child component.
+:::
 
 
 ## External Styles
@@ -385,7 +410,7 @@ Astro comes with support for adding popular CSS libraries, tools and frameworks 
 
 Astro supports CSS preprocessors such as [Sass][sass], [Stylus][stylus], and [Less][less] through [Vite][vite-preprocessors].
 
-### Sass
+### Sass and SCSS
 
  ```shell
  npm install -D sass

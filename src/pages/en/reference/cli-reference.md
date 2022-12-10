@@ -88,7 +88,7 @@ Use these flags to customize your build. For flags shared with other Astro comma
 
 #### `--drafts`
 
-Includes [Markdown draft pages](/en/guides/markdown-content/#markdown-drafts) in the build.
+Includes [Markdown draft pages](/en/guides/markdown-content/#draft-pages) in the build.
 
 ## `astro preview`
 
@@ -143,7 +143,7 @@ astro telemetry clear
 ```
 
 :::tip[Want to disable telemetry in CI environments?]
-Make sure you add the `astro telemetry disable` command to your CI scripts.
+Add the `astro telemetry disable` command to your CI scripts or set the `ASTRO_TELEMETRY_DISABLED` environment variable.
 :::
 
 ## Common flags
